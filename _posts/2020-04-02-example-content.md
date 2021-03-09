@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Example content
+abstract: Introduction to markdown
 ---
 
 
