@@ -161,6 +161,7 @@ code {
 }
 pre {
   display: block;
+  font-size: 85%;
   margin-top: 0;
   margin-bottom: 1rem;
   padding: 1rem;
