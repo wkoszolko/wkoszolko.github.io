@@ -151,7 +151,6 @@ abbr[title] {
 code,
 pre {
   font-family: Menlo, Monaco, "Courier New", monospace;
-  font-size: 50%;
 }
 code {
   padding: .25em .5em;
@@ -162,7 +161,6 @@ code {
 }
 pre {
   display: block;
-  font-size: 85%;
   margin-top: 0;
   margin-bottom: 1rem;
   padding: 1rem;
@@ -175,8 +173,8 @@ pre {
   background-color: #f9f9f9;
 }
 pre code {
+  font-size: 75%;
   padding: 0;
-  font-size: 50%;
   color: inherit;
   background-color: transparent;
 }
