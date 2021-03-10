@@ -26,15 +26,18 @@ This cache miss and additional flush to the main memory can degrade the overall 
 ### Let’s try to reproduce
 
 Java Object Layout (JOL) is a tiny toolbox to analyze memory object layout schemes in JVMs. It allows you to make an estimate of how much memory the object takes. 
-```shell script
+
+```
 <dependency>
   <groupId>org.openjdk.jol</groupId>
   <artifactId>jol-core</artifactId>
   <version>0.10</version>
 </dependency>
 ```
+
 Let’s see memory class layout for simple class with two long variables:
-```shell script
+
+```
 System.out.println(ClassLayout.parseClass(CounterAffectedByFalseSharing.class).toPrintable());
 
  OFFSET  SIZE   TYPE DESCRIPTION                               VALUE
@@ -45,13 +48,16 @@ System.out.println(ClassLayout.parseClass(CounterAffectedByFalseSharing.class).t
 Instance size: 32 bytes
 Space losses: 4 bytes internal + 0 bytes external = 4 bytes total
 ```
+
 Each class has 12 bytes object header. We need to know that JVM adds enough padding to the object to make its size a multiple of 8. 
 In this case, JVM adds 4 bytes. Additionally, there are two long variables each 8 bytes. 
 In total, each instance size is 32 bytes. So the object fits into my 128 bytes of processor’s cache line. 
 If you would like to check the size of your cache line, you need to invoke: 
-```shell script
+
+```
 getconf LEVEL1_DCACHE_LINESIZE
 ```
+
 It is already known that this class could be potentially affected by false-sharing. 
 Following benchmark runs two threads. Each thread modifies different variables but variables are loaded in the same cache line, 
 which means the number of cache misses is huge. 
@@ -75,12 +81,14 @@ public long incrementCounterB() {
 {% endhighlight %}
 
 The average time of incrementing the counter is around 49 nanoseconds. 
-```shell script
+
+```
 Benchmark                                             Mode  Cnt   Score   Error  Units
 FalseSharingBenchmark.falseSharing                    avgt   20  48,897 ± 0,763  ns/op
 FalseSharingBenchmark.falseSharing:incrementCounterA  avgt   20  48,905 ± 0,898  ns/op
 FalseSharingBenchmark.falseSharing:incrementCounterB  avgt   20  48,889 ± 0,859  ns/op
 ```
+
 ### Solution
 
 In order to reduce the number of cache misses, we have to ensure that each variable resides in a different cache line. 
@@ -102,7 +110,8 @@ public class Counter {
 {% endhighlight %}
 
 And its memory layout
-```shell script
+
+```
  OFFSET  SIZE   TYPE DESCRIPTION                               VALUE
       0    12        (object header)                           N/A
      12   132        (alignment/padding gap)                  
@@ -112,13 +121,15 @@ And its memory layout
 Instance size: 288 bytes
 Space losses: 260 bytes internal + 0 bytes external = 260 bytes total
 ```
+
 By default, `@Contended` adds 128 bytes padding before each annotated field. 
 The size of padding could be configurable through -XX:ContendedPaddingWidth tuning flag.
 
 Remember, if you want to use `@Contended` annotation, you have to use the -XX:-RestrictContended tuning flag to allow using this annotation outside the JDK internal.
 
 Now, we are sure that each counter field is fetched in a separate cache line and we can expect a performance boost:
-```shell script
+
+```
 Benchmark                                             Mode  Cnt   Score   Error  Units
 FalseSharingBenchmark.contended                       avgt   20   6,765 ± 0,063  ns/op
 FalseSharingBenchmark.contended:contendedIncrementA   avgt   20   6,765 ± 0,063  ns/op
