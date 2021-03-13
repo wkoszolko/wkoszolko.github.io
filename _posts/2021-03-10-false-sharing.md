@@ -144,7 +144,7 @@ Adding `@Contended` solved the false-sharing problem and reduced significantly e
 ### Conclusion
 
 * `@Contended` solves problem of false-sharing
-* This annotation is used in multiple internal java classes. Notable mentions: Thread, ForkJoinPool, ConccurentHashMap. 
+* This annotation is used in multiple internal java classes. Notable mentions: `Thread`, `ForkJoinPool`, `ConccurentHashMap`. 
 * You should know memory layout of objects
 * Remember, this approach is not a silver bullet. 
 
