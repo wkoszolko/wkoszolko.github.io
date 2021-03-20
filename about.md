@@ -5,4 +5,4 @@ title: About
 
 w.koszolko@gmail.com
 
-https://github.com/wkoszolko
+[GitHub account](https://github.com/wkoszolko)
