@@ -33,7 +33,7 @@ In order to process the data, the CPU has to access the memory. Although accessi
 
 Typically the CPU has 3 levels of cache. Each cache level differs in size, access time, and number of CPU cycles in order to access data.
 
-![cpu-cache-architecture](/assets/cpu-cache-arch.jp2)
+![cpu-cache-architecture](/assets/cpu-cache-arch.jpg)
 
 Differences in cache levels based on Intel Haswell architecture:
 
@@ -47,7 +47,7 @@ Differences in cache levels based on Intel Haswell architecture:
 
 CPUs use multiple different caching strategies. Instead of loading just one variable to the cache, processors tend to load a few more values. This chunk of data is called cache line - the unit of data transfer between cache and memory. In order to improve throughput, CPUs use spatial locality: the concept that likelihood of referencing a resource is higher if a resource near it was referenced.
 
-![cpu-cache-spatial-locality](/assets/cpu-cache-spatial-locality.jp2)
+![cpu-cache-spatial-locality](/assets/cpu-cache-spatial-locality.jpg)
 
 ### Conclusion
 
