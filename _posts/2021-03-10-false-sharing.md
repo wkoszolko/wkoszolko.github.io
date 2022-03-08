@@ -1,7 +1,7 @@
 ---
 layout: post
 title: False Sharing
-abstract: False sharing is one of the well-known performance issues on multi-core systems, where each cpu has its local cache. False sharing is very hard to detect because the threads may be accessing completely different global variables that happen to be relatively close together in memory. Like many concurrency issues, the primary way to avoid false sharing is careful code review and aligning your data structure with the size of a cache line. 
+abstract: False sharing is one of the well-known performance issues on multi-core systems, where each cpu has its local cache. 
 ---
 False sharing is one of the well-known performance issues on multi-core systems, where each cpu has its local cache. False sharing is very hard to detect because the threads may be accessing completely different global variables that happen to be relatively close together in memory. Like many concurrency issues, the primary way to avoid false sharing is careful code review and aligning your data structure with the size of a cache line. 
 
