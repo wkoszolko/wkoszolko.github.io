@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Why should you understand the basics of CPU architecture? 
-abstract: Sometimes your hardware may have significant impact on your system
+abstract: Sometimes your hardware may have significant impact on your system.
 ---
 Let’s start with a simple puzzle. Which loop will end first?
 
