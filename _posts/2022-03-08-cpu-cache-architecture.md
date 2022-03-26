@@ -54,7 +54,7 @@ CPUs use multiple different caching strategies. Instead of loading just one vari
 * sometimes your hardware may have significant impact on your system
 * remember about the cost of cache misses 
 
-The examples are available on my [GitHub Account]().
+The examples are available on my [GitHub Account](https://github.com/wkoszolko/cache-miss).
 
 #### Resources
 
