@@ -49,6 +49,8 @@ CPUs use multiple different caching strategies. Instead of loading just one vari
 
 ![cpu-cache-spatial-locality](/assets/cpu-cache-spatial-locality.jpg)
 
+In this particular case, the CPU loads multiple array elements to the cache at the same time. As we already know, reading data from CPU’s cache is extremely cheap compared to reading data from the memory. Also, the cost of processing each element is negligible (`a[i] *= 3`). Due to this, the total cost of the loop is equal to the number of loading cache lines from memory. Processing times of both loops are almost the same because CPU needs to load the same number of cache lines. 
+
 ### Conclusion
 
 * sometimes your hardware may have significant impact on your system
